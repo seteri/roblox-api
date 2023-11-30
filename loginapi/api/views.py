@@ -39,14 +39,14 @@ def change_status(request):
         if request.GET.get('value') == 'False':
             finalResultInString = "Username or password is incorrect. Try again"
             finalResult = request.GET.get('value')
-            time.sleep(0.5)
+            time.sleep(1.5)
             finalResult = None
             return JsonResponse('success', safe=False)
 
         else:
             finalResult = request.GET.get('value')
             finalResultInString = True
-            time.sleep(0.5)
+            time.sleep(1.5)
             finalResult = None
             return JsonResponse(True, safe=False)
 
