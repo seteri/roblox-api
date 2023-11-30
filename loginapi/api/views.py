@@ -17,7 +17,6 @@ def activate(request):
         requestIsSent = True
 
     while finalResult is None:
-        print("hey")
         if finalResult is not None:
             break
 
@@ -35,7 +34,8 @@ def change_status(request):
     else:
         global finalResult
         global finalResultInString
-
+        print(request.GET.get('value'))
+        
         if request.GET.get('value') == 'False':
             print("lol1")
             finalResultInString = "Username or password is incorrect. Try again"
