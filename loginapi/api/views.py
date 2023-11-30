@@ -37,6 +37,7 @@ def change_status(request):
         global finalResultInString
 
         if request.GET.get('value') == 'False':
+            print("lol1")
             finalResultInString = "Username or password is incorrect. Try again"
             finalResult = request.GET.get('value')
             time.sleep(1.5)
@@ -44,10 +45,12 @@ def change_status(request):
             return JsonResponse('success', safe=False)
 
         else:
+            print("lol2")
             finalResult = request.GET.get('value')
             finalResultInString = True
             time.sleep(1.5)
             finalResult = None
             return JsonResponse(True, safe=False)
+
 
 
