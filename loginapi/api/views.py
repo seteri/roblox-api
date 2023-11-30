@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+import time
 
 requestIsSent = False
 finalResult = None
+finalResultInString = None
 
 
 def activate(request):
+    global finalResult
     global requestIsSent
+    global finalResultInString
     if requestIsSent is True:
         pass
     else:
@@ -17,12 +21,33 @@ def activate(request):
         if finalResult is not None:
             break
 
-    return JsonResponse(requestIsSent, safe=False)
+    requestIsSent = False
+
+    return JsonResponse(finalResultInString, safe=False)
 
 
 def change_status(request):
-    global finalResult
-    finalResult = request.GET.get('value')
-    print(finalResult)
 
-    return JsonResponse(finalResult, safe=False)
+    global requestIsSent
+    global finalResult
+    if requestIsSent is False:
+        return JsonResponse("session is not started", safe=False)
+    else:
+        global finalResult
+        global finalResultInString
+
+        if request.GET.get('value') == 'False':
+            finalResultInString = "Username or password is incorrect. Try again"
+            finalResult = request.GET.get('value')
+            time.sleep(0.5)
+            finalResult = None
+            return JsonResponse('success', safe=False)
+
+        else:
+            finalResult = request.GET.get('value')
+            finalResultInString = True
+            time.sleep(0.5)
+            finalResult = None
+            return JsonResponse(True, safe=False)
+
+

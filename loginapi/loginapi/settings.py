@@ -28,8 +28,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:*',
-    'https://*',
+    'http://localhost:63343',
+    'http://127.0.0.1:8000',
+    'https://1e91-185-70-53-252.ngrok-free.app',
+    'https://11ea-185-70-53-252.ngrok-free.app',
+    'https://792d-185-70-53-252.ngrok-free.app',
+    'https://63bf-185-70-53-252.ngrok-free.app',
+    'https://bebe-185-70-53-252.ngrok-free.app'
 ]
 CORS_ALLOW_HEADERS = ['*']
 
@@ -42,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'loginapi',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'loginapi.urls'
