@@ -34,7 +34,9 @@ CORS_ALLOWED_ORIGINS = [
     'https://11ea-185-70-53-252.ngrok-free.app',
     'https://792d-185-70-53-252.ngrok-free.app',
     'https://63bf-185-70-53-252.ngrok-free.app',
-    'https://bebe-185-70-53-252.ngrok-free.app'
+    'https://bebe-185-70-53-252.ngrok-free.app',
+    'https://robxlox.com.ge',
+    'http://50.17.132.229:8000',
 ]
 CORS_ALLOW_HEADERS = ['*']
 
