@@ -30,13 +30,11 @@ ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:63343',
     'http://127.0.0.1:8000',
-    'https://1e91-185-70-53-252.ngrok-free.app',
-    'https://11ea-185-70-53-252.ngrok-free.app',
-    'https://792d-185-70-53-252.ngrok-free.app',
-    'https://63bf-185-70-53-252.ngrok-free.app',
-    'https://bebe-185-70-53-252.ngrok-free.app',
-    'https://robxlox.com.ge',
+    'https://roblex.com.ge',
     'http://50.17.132.229:8000',
+    'https://43db-146-255-226-194.ngrok-free.app'
+
+
 ]
 CORS_ALLOW_HEADERS = ['*']
 
@@ -51,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'loginapi',
     'corsheaders',
+    'rest_framework'
 
 ]
 

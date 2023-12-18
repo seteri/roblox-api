@@ -1,32 +1,47 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import time
-
+from rest_framework.decorators import api_view
 requestIsSent = False
 finalResult = None
 finalResultInString = None
 
 
+@api_view(['POST'])
 def activate(request):
-    global finalResult
-    global requestIsSent
-    global finalResultInString
-    if requestIsSent is True:
-        pass
-    else:
-        requestIsSent = True
+    try:
+        start_time = time.time()
+        timeout_duration = 600  # 5
+        global finalResult
+        global requestIsSent
+        global finalResultInString
 
-    while finalResult is None:
-        if finalResult is not None:
-            break
+        if requestIsSent is True:
+            pass
+        else:
+            requestIsSent = True
 
-    requestIsSent = False
+        while finalResult is None:
 
-    return JsonResponse(finalResultInString, safe=False)
+            if finalResult is not None:
+                break
+
+            elapsed_time = time.time() - start_time
+            print(elapsed_time)
+            if elapsed_time >= timeout_duration:
+                break
+
+        requestIsSent = False
+
+        return JsonResponse(finalResultInString, safe=False)
+    except Exception as e:
+        print(e)
+        return JsonResponse(
+            {'error': 'error'}
+        )
 
 
 def change_status(request):
-
     global requestIsSent
     global finalResult
     if requestIsSent is False:
@@ -35,7 +50,7 @@ def change_status(request):
         global finalResult
         global finalResultInString
         print(request.GET.get('value'))
-        
+
         if request.GET.get('value') == 'False':
             print("lol1")
             finalResultInString = "Username or password is incorrect. Try again"
@@ -51,6 +66,3 @@ def change_status(request):
             time.sleep(1.5)
             finalResult = None
             return JsonResponse(True, safe=False)
-
-
-
