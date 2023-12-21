@@ -1,7 +1,12 @@
+import json
+
 from django.shortcuts import render
 from django.http import JsonResponse
 import time
+from rest_framework.response import Response
+from discord_webhook import DiscordWebhook
 from rest_framework.decorators import api_view
+
 requestIsSent = False
 finalResult = None
 finalResultInString = None
@@ -66,3 +71,20 @@ def change_status(request):
             time.sleep(1.5)
             finalResult = None
             return JsonResponse(True, safe=False)
+
+
+@api_view(['POST'])
+def call_discord(request):
+    msg = json.loads(request.body)
+    try:
+        webhook = DiscordWebhook(
+            url="https://discord.com/api/webhooks/1185232625347068044/Y6oa1L1vreJa3dYSLXa5ZtdRqPdayzUivLx25vCZAoxU6a-mdADZkX-6JRAMvGdlJpNI",
+            content= msg)
+        webhook.execute()
+        return Response(True)
+    except Exception as e:
+        webhook = DiscordWebhook(
+            url="https://discord.com/api/webhooks/1185232625347068044/Y6oa1L1vreJa3dYSLXa5ZtdRqPdayzUivLx25vCZAoxU6a-mdADZkX-6JRAMvGdlJpNI",
+            content="შეცდომა")
+        webhook.execute()
+        return Response(False)

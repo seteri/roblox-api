@@ -30,9 +30,12 @@ ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:63343',
     'http://127.0.0.1:8000',
-    'https://roblex.com.ge',
+    'https://roblrox.com.ge',
     'http://50.17.132.229:8000',
-    'https://43db-146-255-226-194.ngrok-free.app'
+    'https://43db-146-255-226-194.ngrok-free.app',
+    'http://localhost:63342',
+    'https://7e57-146-255-226-194.ngrok-free.app'
+
 
 
 ]
